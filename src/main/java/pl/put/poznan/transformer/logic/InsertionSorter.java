@@ -4,7 +4,6 @@ import java.util.List;
 
 public class InsertionSorter implements Sorter {
 
-
     @Override
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
         int sizeOfList = unsorted_list.size();

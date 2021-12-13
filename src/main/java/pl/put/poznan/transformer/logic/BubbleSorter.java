@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BubbleSorter implements Sorter {
 
+
     @Override
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
         int sizeOfList = unsorted_list.size();
