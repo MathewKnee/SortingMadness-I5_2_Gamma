@@ -13,11 +13,19 @@ public class InsertionSorter implements Sorter {
             if (i < max_it) {
                 E key = unsorted_list.get(i);
                 int j = i - 1;
-                while (j >= 0 && (direction_switch * unsorted_list.get(j).compareTo(key) > 0)) {
-                    unsorted_list.set(j + 1, unsorted_list.get(j));
-                    --j;
+                if (key instanceof String) {
+                    while (j >= 0 && (direction_switch * ((String) unsorted_list.get(j)).compareToIgnoreCase((String) key) > 0)) {
+                        unsorted_list.set(j + 1, unsorted_list.get(j));
+                        --j;
+                    }
+                    unsorted_list.set(j + 1, key);
+                } else {
+                    while (j >= 0 && (direction_switch * unsorted_list.get(j).compareTo(key) > 0)) {
+                        unsorted_list.set(j + 1, unsorted_list.get(j));
+                        --j;
+                    }
+                    unsorted_list.set(j + 1, key);
                 }
-                unsorted_list.set(j + 1, key);
             } else {
                 break;
             }

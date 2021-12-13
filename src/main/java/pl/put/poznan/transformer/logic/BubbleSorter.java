@@ -12,13 +12,23 @@ public class BubbleSorter implements Sorter {
         for (int i = 0; i < sizeOfList; i++) {
             if (i < max_it) {
                 for (int j = 0; j < (sizeOfList - i); j++) {
-                    if (direction_switch * unsorted_list.get(j - 1).compareTo(unsorted_list.get(j)) > 0) {
-                        Collections.swap(unsorted_list, j - 1, j);
+                    if (unsorted_list.get(j - 1) instanceof String) {
+                        if (direction_switch * ((String) unsorted_list.get(j - 1)).compareToIgnoreCase((String) unsorted_list.get(j)) > 0) {
+                            Collections.swap(unsorted_list, j - 1, j);
+
+                        } else {
+
+
+                            if (direction_switch * unsorted_list.get(j - 1).compareTo(unsorted_list.get(j)) > 0) {
+                                Collections.swap(unsorted_list, j - 1, j);
+                            }
+                        }
                     }
                 }
             } else {
                 break;
             }
+
         }
     }
 }
