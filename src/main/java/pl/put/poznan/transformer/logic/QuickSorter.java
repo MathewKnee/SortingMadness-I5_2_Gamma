@@ -27,7 +27,7 @@ public class QuickSorter implements Sorter{
 
     @Override
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
-        int[] stack_indexes = new int[unsorted_list.size()];
+        int[] stack_indexes = new int[unsorted_list.size() + unsorted_list.size() % 2];
         int top = -1, iteration_nr = 1;
         stack_indexes[++top] = 0;
         stack_indexes[++top] = unsorted_list.size() - 1;
