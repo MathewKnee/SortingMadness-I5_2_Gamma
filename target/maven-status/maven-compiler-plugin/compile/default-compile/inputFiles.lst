@@ -1,3 +1,10 @@
-/Users/mochodek/Documents/Dydaktyka/Wyklady/IO/Laboratory classes/projekt/ioprojectarchitecture/src/main/java/pl/put/poznan/transformer/app/TextTransformerApplication.java
-/Users/mochodek/Documents/Dydaktyka/Wyklady/IO/Laboratory classes/projekt/ioprojectarchitecture/src/main/java/pl/put/poznan/transformer/logic/TextTransformer.java
-/Users/mochodek/Documents/Dydaktyka/Wyklady/IO/Laboratory classes/projekt/ioprojectarchitecture/src/main/java/pl/put/poznan/transformer/rest/TextTransformerController.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\app\SortingMadnessApplication.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\MergeSorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\QuickSorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\Sorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\InsertionSorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\HeapSorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\rest\TextTransformerController.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\BubbleSorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\CocktailSorter.java
+C:\Users\matiz\Desktop\Studia\Semestr 5\IO\Sprints\SortingMadness-I5_2_Gamma\src\main\java\pl\put\poznan\sortingmadness\logic\TextTransformer.java

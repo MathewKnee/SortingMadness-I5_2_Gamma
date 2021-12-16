@@ -1,4 +1,4 @@
-package pl.put.poznan.transformer.logic;
+package pl.put.poznan.sortingmadness.logic;
 
 import java.util.List;
 
