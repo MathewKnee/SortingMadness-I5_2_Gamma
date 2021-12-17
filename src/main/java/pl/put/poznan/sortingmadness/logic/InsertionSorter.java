@@ -1,5 +1,7 @@
 package pl.put.poznan.sortingmadness.logic;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class InsertionSorter implements Sorter {
@@ -8,7 +10,7 @@ public class InsertionSorter implements Sorter {
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
         int sizeOfList = unsorted_list.size();
         int direction_switch = ascending ? 1 : -1;
-        for (int i = 1; i <= sizeOfList; i++) {
+        for (int i = 1; i < sizeOfList; i++) {
             if (i < max_it) {
                 E key = unsorted_list.get(i);
                 int j = i - 1;
@@ -28,7 +30,22 @@ public class InsertionSorter implements Sorter {
             } else {
                 break;
             }
+        }
+    }
 
+    public void sort(List<JSONObject> unsorted_list,
+                     int max_it, boolean ascending,
+                     JSONComparator comparator) {
+        int sizeOfList = unsorted_list.size();
+        int direction_switch = ascending ? 1 : -1;
+        for (int i = 1; i < sizeOfList && i < max_it; i++) {
+            JSONObject key = unsorted_list.get(i);
+            int j = i - 1;
+            while (j >= 0 && (direction_switch * comparator.compare(unsorted_list.get(j), key) > 0)) {
+                unsorted_list.set(j + 1, unsorted_list.get(j));
+                --j;
+            }
+            unsorted_list.set(j + 1, key);
         }
     }
 }
