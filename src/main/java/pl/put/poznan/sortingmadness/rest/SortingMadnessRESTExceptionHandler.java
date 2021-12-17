@@ -22,8 +22,8 @@ import java.util.List;
 public class SortingMadnessRESTExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Handler for {@link JSONException}
-     * @param ex - thrown exception
-     * @param request - request that caused it
+     * @param ex thrown exception
+     * @param request request that caused it
      * @return REST response that describes the error
      */
     @ExceptionHandler(JSONException.class)
