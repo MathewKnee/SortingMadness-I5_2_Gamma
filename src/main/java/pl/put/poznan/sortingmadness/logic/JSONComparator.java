@@ -21,9 +21,9 @@ public class JSONComparator implements Comparator<JSONObject> {
      * Compares two properties either when they are either Integer, Long, Double or String.
      * If property type is different it assumes objects are equal on that given key.
      *
-     * @param o1 - object to compare
-     * @param o2 - object to compare
-     * @return value lower than zero if o1 < o2, zero if o1 == o2 and value greater than zero if o1 > o2
+     * @param o1 object to compare
+     * @param o2 object to compare
+     * @return value lower than zero if o1 lesser than o2, zero if o1 equals o2 and value greater than zero if o1 greater than o2
      */
     @Override
     public int compare(JSONObject o1, JSONObject o2) {

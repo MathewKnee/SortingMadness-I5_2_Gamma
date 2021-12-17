@@ -54,13 +54,12 @@ public class SortingMadnessController {
     /**
      * Simple Sorting - Handles REST GET request, delegates the sorting to the sorting logic and then composes a response.
      *
-     *
-     * @param sorting_algorithms - list of sorting algorithms to be used
-     * @param max_iterations - list of maximum number of iterations used by each algorithm (size must equal be equal to
+     * @param sorting_algorithms list of sorting algorithms to be used
+     * @param max_iterations list of maximum number of iterations used by each algorithm (size must equal be equal to
      *                       the size of sorting_algorithms)
-     * @param directions - list of sorting direction modifiers for each algorithm (accepts either "asc" or "desc"
+     * @param directions list of sorting direction modifiers for each algorithm (accepts either "asc" or "desc"
      *                              size must equal be equal to the size of sorting_algorithms)
-     * @param list - list of Comparable objects to be sorted by specified algorithms
+     * @param list list of Comparable objects to be sorted by specified algorithms
      * @return list of SortingMadnessResponse containing elapsed time by each algorithm and sorted list
      */
     @GetMapping("/sortingmadness")
@@ -88,16 +87,15 @@ public class SortingMadnessController {
         return new ResponseEntity<List<SortingMadnessResponse>>(responses, HttpStatus.OK);
     }
     /**
-     * Simple Sorting - Handles REST GET request, delegates the sorting to the sorting logic and then composes a response.
+     * Object Sorting - Handles REST GET request, delegates the sorting to the sorting logic and then composes a response.
      *
-     *
-     * @param sorting_algorithms - list of sorting algorithms to be used
-     * @param max_iterations - list of maximum number of iterations used by each algorithm (size must equal be equal to
+     * @param sorting_algorithms list of sorting algorithms to be used
+     * @param max_iterations list of maximum number of iterations used by each algorithm (size must equal be equal to
      *                       the size of sorting_algorithms)
-     * @param directions - list of sorting direction modifiers for each algorithm (accepts either "asc" or "desc"
+     * @param directions list of sorting direction modifiers for each algorithm (accepts either "asc" or "desc"
      *                              size must equal be equal to the size of sorting_algorithms)
-     * @param sorting_keys - list of keys by which sorting happens
-     * @param list - list of JSONObjects to be sorted by specified algorithms
+     * @param sorting_keys list of keys by which sorting happens
+     * @param list list of JSONObjects to be sorted by specified algorithms
      * @return list of SortingMadnessResponse containing elapsed time by each algorithm and sorted list
      */
     @GetMapping("/sortingmadness/objects")
