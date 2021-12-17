@@ -5,6 +5,11 @@ import org.json.JSONObject;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Concrete strategy of Sorter. Used to sort lists using heap sort algorithm.
+ * @author Wiktor Koropczuk
+ * @version 1.0
+ */
 public class HeapSorter implements Sorter{
     /**
      * Compares two objects that are not instance of JSON object.
@@ -49,6 +54,16 @@ public class HeapSorter implements Sorter{
         return (res > 0 && ascending) || (res < 0 && !ascending);
     }
 
+    /**
+     * Constructs heap from provided list.
+     *
+     * @param list input and output data to construct heap
+     * @param size index of list element which will be last heap's leaf
+     * @param startNode index of list element which will be heap's root
+     * @param ascending if true, method will construct max heap, otherwise it will construct min heap
+     * @param comparator JSON comparator
+     * @param <E> any comparable datatype or JSONObject
+     */
     private <E> void BuildHeap(List<E> list, int size, int startNode, boolean ascending, JSONComparator comparator){
         int node = startNode;
         for (;;)
@@ -68,6 +83,15 @@ public class HeapSorter implements Sorter{
 
     }
 
+    /**
+     * Sorts the given list using heap sort algorithm.
+     * One iteration means one process of getting the minimal/maximal element and restoring heap.
+     *
+     * @param unsorted_list list of JSONObjects to be sorted
+     * @param max_it specifies maximum number of iterations for the heap sort (if max_it lesser than or equal to 0 then inf)
+     * @param ascending specifies direction of sorting and type of constructed heap if true then ascending and max heap else false and min heap
+     * @param comparator JSONComparator that compares those two objects based on given keys
+     */
     public void sort(List<JSONObject> unsorted_list, int max_it, boolean ascending, JSONComparator comparator){
         int max_it_copy;
         if (max_it <= 0)
@@ -82,6 +106,15 @@ public class HeapSorter implements Sorter{
         }
     }
 
+    /**
+     * Sorts the given list using heap sort algorithm.
+     * One iteration means one process of getting the minimal/maximal element and restoring heap.
+     * 
+     * @param unsorted_list list of Comparable objects to be sorted
+     * @param max_it specifies maximum number of iterations for the heap sort (if max_it lesser than or equal to 0 then inf)
+     * @param ascending specifies direction of sorting and type of constructed heap if true then ascending and max heap else false and min heap
+     * @param <E> self Comparable object
+     */
     @Override
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending){
         int max_it_copy;
