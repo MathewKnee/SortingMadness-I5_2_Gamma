@@ -21,7 +21,7 @@ jobs:
           name: Package
           path: packages
       - name: Generate JavaDoc
-        run: mvn javadoc:javadoc
+        run: mvn javadoc:javadoc -Dshow=private
       - name: Copy documentation files
         run: |
           rm -rf docs/*
