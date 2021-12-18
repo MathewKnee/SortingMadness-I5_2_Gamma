@@ -11,7 +11,13 @@ import java.util.List;
  */
 @XmlRootElement(name = "error")
 public class SortingMadnessErrorResponse {
+    /**
+     * Error message to be sent
+     */
     private String message;
+    /**
+     * Exception details
+     */
     private List<String> details;
     public SortingMadnessErrorResponse(String message, List<String> details){
         super();

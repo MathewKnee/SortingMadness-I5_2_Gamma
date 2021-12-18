@@ -6,7 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Concrete strategy of Sorter. Used to sort lists using cocktail sort algorithm.
+ * Class used to sort lists using cocktail sort algorithm.
+ * Concrete strategy of {@link Sorter}.
  * @author Mateusz Kolano
  * @version 1.1
  */

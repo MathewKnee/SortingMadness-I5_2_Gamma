@@ -5,6 +5,4 @@ pl\put\poznan\sortingmadness\logic\QuickSorter.class
 pl\put\poznan\sortingmadness\logic\CocktailSorter.class
 pl\put\poznan\sortingmadness\app\SortingMadnessApplication.class
 pl\put\poznan\sortingmadness\logic\BubbleSorter.class
-pl\put\poznan\sortingmadness\rest\TextTransformerController.class
 pl\put\poznan\sortingmadness\logic\HeapSorter.class
-pl\put\poznan\sortingmadness\logic\TextTransformer.class

@@ -9,10 +9,25 @@ import java.util.List;
  * @version 1.0
  */
 public class SortingMadnessResponse {
+    /**
+     * Describes how much time did the algorithm take to complete.
+     */
     private double elapsed_time;
+    /**
+     * Sorting algorithm that was used.
+     */
     private String sorting_algorithm;
+    /**
+     * Sorting direction for the given algorithm
+     */
     private String direction;
+    /**
+     * Maximum number of iterations (specified by the client) used by the algorithm.
+     */
     private Integer max_it;
+    /**
+     * Sorted or partially sorted list
+     */
     private List<Object> sorted_list;
 
     public void setElapsed_time(double elapsed_time) {

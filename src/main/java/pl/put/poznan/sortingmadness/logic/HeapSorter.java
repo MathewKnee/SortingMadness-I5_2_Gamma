@@ -6,7 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Concrete strategy of Sorter. Used to sort lists using heap sort algorithm.
+ * Class used to sort lists using heap sort algorithm.
+ * Concrete strategy of {@link Sorter}.
  * @author Wiktor Koropczuk
  * @version 1.0
  */
