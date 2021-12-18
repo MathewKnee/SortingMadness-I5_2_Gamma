@@ -24,12 +24,12 @@ import java.util.Map;
 public class SortingMadnessController {
 
     SortingMadnessHelper sortingMadnessHelper = new SortingMadnessHelper();
-    @PostMapping("/sortingMadness")
+    @PostMapping(value = "/sortingMadness",produces = "application/json")
     public String postObjectSorting(@RequestBody String sortingMadnessRequest){
         return sortingMadnessHelper.getResponseObject(sortingMadnessRequest);
     }
 
-    @PostMapping("/sortingMadnessSimple")
+    @PostMapping(value = "/sortingMadnessSimple",produces = "application/json")
     public String postSimpleSorting(@RequestBody String sortingMadnessRequest){
 
         return sortingMadnessHelper.getResponseSimple(sortingMadnessRequest);
