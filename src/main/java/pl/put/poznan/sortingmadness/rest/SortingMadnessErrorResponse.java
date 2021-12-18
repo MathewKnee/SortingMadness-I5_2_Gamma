@@ -1,5 +1,7 @@
 package pl.put.poznan.sortingmadness.rest;
 
+import pl.put.poznan.sortingmadness.model.SortingMadnessResponse;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
@@ -9,7 +11,6 @@ import java.util.List;
  * @author -
  * @version 1.0
  */
-@XmlRootElement(name = "error")
 public class SortingMadnessErrorResponse {
     private String message;
     private List<String> details;
