@@ -10,6 +10,9 @@ import static java.lang.Math.min;
 
 /**
  * Class to sort list of elements using merge sort algorithm.
+ * Concrete strategy of {@link Sorter}.
+ * @author Szymon Kowalski
+ * @version 1.0
  */
 public class MergeSorter implements Sorter{
 

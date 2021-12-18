@@ -7,6 +7,9 @@ import java.util.List;
 
 /**
  * Class to sort list of elements using quick sort algorithm.
+ * Concrete strategy of {@link Sorter}.
+ * @author Agnieszka Klimek
+ * @version 1.0
  */
 public class QuickSorter implements Sorter{
 

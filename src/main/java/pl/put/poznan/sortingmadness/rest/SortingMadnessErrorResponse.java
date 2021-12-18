@@ -12,7 +12,13 @@ import java.util.List;
  * @version 1.0
  */
 public class SortingMadnessErrorResponse {
+    /**
+     * Error message to be sent
+     */
     private String message;
+    /**
+     * Exception details
+     */
     private List<String> details;
     public SortingMadnessErrorResponse(String message, List<String> details){
         super();

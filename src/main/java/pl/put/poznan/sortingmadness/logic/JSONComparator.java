@@ -11,6 +11,9 @@ import java.util.List;
  * @version 1.1
  */
 public class JSONComparator implements Comparator<JSONObject> {
+    /**
+     * Stores keys by which the objects will be sorted
+     */
     private List<String> keys;
     public JSONComparator(List<String> keys){
         this.keys = keys;
