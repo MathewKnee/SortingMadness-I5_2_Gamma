@@ -34,5 +34,6 @@ jobs:
             git add packages/
             git add docs/
             git commit -m "Automated documentation and packages update."
+            git push
           fi
       
