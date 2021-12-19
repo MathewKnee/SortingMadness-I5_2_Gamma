@@ -43,7 +43,7 @@ public class SortingMadnessHelper {
      * @param chooseSorter ChooseSorter object for which the sorting algorithm will be set.
      * @param sortingAlg name of the algorithm.
      */
-    private void fillSorter(ChooseSorter chooseSorter, String sortingAlg) {
+    private void fillSorter(ChooseSorter chooseSorter, String sortingAlg) throws ChooseSorter.NoSorterProvided{
         if (sortingAlg.equals("bubblesort")) {
             logger.debug("Chosen algorithm: bubble sort");
             BubbleSorter bubbleSorter = new BubbleSorter();
@@ -73,6 +73,9 @@ public class SortingMadnessHelper {
             logger.debug("Chosen algorithm: quick sort");
             QuickSorter quickSorter = new QuickSorter();
             chooseSorter.setSorter(quickSorter);
+        }else{
+            logger.debug("No matching algorithm");
+            throw new ChooseSorter.NoSorterProvided("There is no sorting algorithm with name: "+sortingAlg);
         }
 
     }
@@ -213,9 +216,9 @@ public class SortingMadnessHelper {
         SortingMadnessRequest sortingMadnessRequest = getData(request);
         List<SortingMadnessResponse> responseList = new ArrayList<>();
         ChooseSorter chooseSorter = new ChooseSorter();
-        List<JSONObject> dataList = sortingMadnessRequest.getData();
         logger.info("Beginning sorting");
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
+            List<JSONObject> dataList = new ArrayList<>(sortingMadnessRequest.getData());
             logParameters(param);
             fillSorter(chooseSorter, param.getSortingAlgorithm());
             logger.info("Starting computation");
@@ -264,8 +267,8 @@ public class SortingMadnessHelper {
         ChooseSorter chooseSorter = new ChooseSorter();
         logger.info("Beginning sorting");
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
+            List<Comparable> dataList = new ArrayList<>(sortingMadnessRequest.getSimpleData());
             logParameters(param);
-            List<Comparable> dataList = sortingMadnessRequest.getSimpleData();
             fillSorter(chooseSorter, param.getSortingAlgorithm());
             logger.info("Starting computation");
             long timeOfSorting = chooseSorter.executeSort(dataList, param.getMaxIterations(), getBooleanValueOfDirection(param.getDirection()));
