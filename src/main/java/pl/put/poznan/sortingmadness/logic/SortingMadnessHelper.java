@@ -49,27 +49,27 @@ public class SortingMadnessHelper {
             BubbleSorter bubbleSorter = new BubbleSorter();
             chooseSorter.setSorter(bubbleSorter);
         }
-        if (sortingAlg.equals("cocktailsort")) {
+        else if (sortingAlg.equals("cocktailsort")) {
             logger.debug("Chosen algorithm: cocktail sort");
             CocktailSorter cocktailSorter = new CocktailSorter();
             chooseSorter.setSorter(cocktailSorter);
         }
-        if (sortingAlg.equals("heapsort")) {
+        else if (sortingAlg.equals("heapsort")) {
             logger.debug("Chosen algorithm: heap sort");
             HeapSorter heapSorter = new HeapSorter();
             chooseSorter.setSorter(heapSorter);
         }
-        if (sortingAlg.equals("insertionsort")) {
+        else if (sortingAlg.equals("insertionsort")) {
             logger.debug("Chosen algorithm: insertion sort");
             InsertionSorter insertionSorter = new InsertionSorter();
             chooseSorter.setSorter(insertionSorter);
         }
-        if (sortingAlg.equals("mergesort")) {
+        else if (sortingAlg.equals("mergesort")) {
             logger.debug("Chosen algorithm: merge sort");
             MergeSorter mergeSorter = new MergeSorter();
             chooseSorter.setSorter(mergeSorter);
         }
-        if (sortingAlg.equals("quicksort")) {
+        else if (sortingAlg.equals("quicksort")) {
             logger.debug("Chosen algorithm: quick sort");
             QuickSorter quickSorter = new QuickSorter();
             chooseSorter.setSorter(quickSorter);
