@@ -18,7 +18,7 @@ public class CocktailSorter implements Sorter{
      *
      * @param unsorted_list list of Comparable objects to be sorted
      * @param max_it specifies maximum number of iterations for the cocktail sort (if max_it lesser than or equal to 0 then inf)
-     * @param ascending specifies direction of sorting if true then ascending else false
+     * @param ascending specifies direction of sorting if true then ascending else descending
      * @param <E> self Comparable object
      */
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending){
@@ -59,7 +59,7 @@ public class CocktailSorter implements Sorter{
      *
      * @param unsorted_list list of JSONObjects to be sorted
      * @param max_it specifies maximum number of iterations for the cocktail sort (if max_it lesser than or equal to 0 then inf)
-     * @param ascending specifies direction of sorting if true then ascending else false
+     * @param ascending specifies direction of sorting if true then ascending else descending
      * @param comparator JSONComparator that compares those two objects based on given keys
      */
     public void sort(List<JSONObject> unsorted_list, int max_it, boolean ascending, JSONComparator comparator){

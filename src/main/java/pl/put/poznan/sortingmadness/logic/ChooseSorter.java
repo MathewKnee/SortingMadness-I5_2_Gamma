@@ -4,14 +4,14 @@ import java.util.List;
 import org.json.JSONObject;
 
 /**
- * TODO
- *
+ * Context class for {@link Sorter} strategy.
+ * Sets appropriate strategy and executes sorting.
  * @author Wiktor Koropczuk
  * @version 1.0
  */
 public class ChooseSorter {
     /**
-     * TODO
+     * Exception thrown when list to sort is empty.
      */
     public static class EmptyInputException extends Exception{
         public EmptyInputException(){
@@ -20,7 +20,7 @@ public class ChooseSorter {
     }
 
     /**
-     * TODO
+     * Exception thrown when sorting is executed without setting sorter.
      */
     public static class NoSorterProvided extends Exception{
         public NoSorterProvided(){
@@ -29,7 +29,7 @@ public class ChooseSorter {
     }
 
     /**
-     * TODO
+     * Sorter used to sort the list.
      */
     private Sorter sorter;
     public void setSorter(Sorter sorter){
@@ -37,14 +37,14 @@ public class ChooseSorter {
     }
 
     /**
-     * TODO
-     * @param unsorted_list
-     * @param max_it
-     * @param ascending
-     * @param <E>
-     * @return
-     * @throws EmptyInputException
-     * @throws NoSorterProvided
+     * Method executing sorting for Comparable objects and measuring elapsed time in nanoseconds.
+     * @param unsorted_list list to be sorted.
+     * @param max_it maximum number of iterations.
+     * @param ascending specifies direction of sorting if true then ascending else descending.
+     * @param <E> self Comparable object.
+     * @return elapsed time in nanoseconds.
+     * @throws EmptyInputException thrown when unsorted_list is empty.
+     * @throws NoSorterProvided thrown when Sorter wasn't set before executing this method.
      */
     public <E extends Comparable<E>> long executeSort(List<E> unsorted_list, int max_it, boolean ascending) throws EmptyInputException, NoSorterProvided {
         if (unsorted_list.size() == 0)
@@ -57,22 +57,22 @@ public class ChooseSorter {
     }
 
     /**
-     * TODO
-     * @param unsorted_list
-     * @param max_it
-     * @param ascending
-     * @param comparator
-     * @return
-     * @throws EmptyInputException
-     * @throws NoSorterProvided
+     * Method executing sorting for Comparable objects and measuring elapsed time in nanoseconds.
+     * @param unsorted_list list to be sorted.
+     * @param max_it maximum number of iterations.
+     * @param ascending specifies direction of sorting if true then ascending else descending.
+     * @param comparator comparator used for comparing of JSONObjects.
+     * @return elapsed time in nanoseconds.
+     * @throws EmptyInputException thrown when unsorted_list is empty.
+     * @throws NoSorterProvided thrown when Sorter wasn't set before executing this method.
      */
     public long executeSort(List<JSONObject> unsorted_list, int max_it, boolean ascending, JSONComparator comparator) throws EmptyInputException, NoSorterProvided {
         if (unsorted_list.size() == 0)
             throw new EmptyInputException();
         if (sorter == null)
             throw new NoSorterProvided();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         sorter.sort(unsorted_list, max_it, ascending, comparator);
-        return System.currentTimeMillis() - start;
+        return System.nanoTime() - start;
     }
 }
