@@ -1,4 +1,4 @@
-package pl.put.poznan.sortingmadness.rest;
+package pl.put.poznan.sortingmadness.model;
 
 import pl.put.poznan.sortingmadness.model.SortingMadnessResponse;
 
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Error response wrapper for {@link SortingMadnessResponse}
  *
- * @author -
+ * @author Mateusz Kolano
  * @version 1.0
  */
 public class SortingMadnessErrorResponse {

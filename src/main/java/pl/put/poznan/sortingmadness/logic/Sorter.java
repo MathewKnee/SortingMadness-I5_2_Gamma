@@ -13,19 +13,19 @@ import java.util.List;
 public interface Sorter {
     /**
      * Sorting 1D list of Comparable objects.
-     * @param unsorted_list @param unsorted_list list of Comparable objects to be sorted
-     * @param max_it specifies maximum number of iterations for the cocktail sort (if max_it lesser than or equal to 0 then inf)
-     * @param ascending specifies direction of sorting if true then ascending else false
-     * @param <E> self Comparable object
+     * @param unsorted_list unsorted_list list of Comparable objects to be sorted.
+     * @param max_it specifies maximum number of iterations for the cocktail sort (if max_it lesser than or equal to 0 then inf).
+     * @param ascending specifies direction of sorting if true then ascending else false.
+     * @param <E> self Comparable object.
      */
     <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending);
 
     /**
-     * Sorting 1D list of JSONObjects,
-     * @param unsorted_list
-     * @param max_it
-     * @param ascending
-     * @param comparator
+     * Sorting 1D list of JSONObjects.
+     * @param unsorted_list unsorted_list list of JSONObjects to be sorted.
+     * @param max_it specifies maximum number of iterations for the cocktail sort (if max_it lesser than or equal to 0 then inf).
+     * @param ascending specifies direction of sorting if true then ascending else false.
+     * @param comparator comparator used for comparing of JSONObjects.
      */
     void sort(List<JSONObject> unsorted_list, int max_it, boolean ascending, JSONComparator comparator);
 }

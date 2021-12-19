@@ -5,14 +5,23 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
- * Wrapper for REST response.
+ * Wrapper for REST response for object sorting.
  *
- * @author Matuesz Kolano
+ * @author Aleksandra Kiel
  * @version 1.0
  */
 public class SortingMadnessResponse {
+    /**
+     * Elapsed time in nanoseconds for given algorithm.
+     */
     private long elapsed_time;
+    /**
+     * Used sorting algorithm.
+     */
     private String sorting_algorithm;
+    /**
+     * Sorted list of JSONObjects to be sent.
+     */
     private List<JSONObject> sorted_list;
 
     public void setElapsed_time(long elapsed_time) {

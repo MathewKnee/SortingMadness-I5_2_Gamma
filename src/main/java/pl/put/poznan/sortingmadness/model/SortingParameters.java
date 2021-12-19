@@ -1,20 +1,32 @@
 package pl.put.poznan.sortingmadness.model;
 
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
+/**
+ * Sorting parameters wrapper.
+ *
+ * @author Aleksandra Kiel
+ * @version 1.0
+ */
 public class SortingParameters {
-        private String sortingAlgorithms;
-        private Integer maxIterations;
-        private String directions;
+    /**
+     * Sorting algorithm to be used (available options: bubblesort, insertionsort, quicksort, cocktailsort, heapsort, mergesort).
+     */
+    private String sortingAlgorithm;
+    /**
+     * Iteration limit for the given algorithm(if lesser than or equal to 0 then iteration limit isn't taken into account).
+     */
+    private Integer maxIterations;
+    /**
+     * Sorting direction for the given algorithm(ASC - ascending, DESC - descending).
+     */
+    private String direction;
 
-    public String getSortingAlgorithms() {
-        return sortingAlgorithms;
+    public String getSortingAlgorithm() {
+        return sortingAlgorithm;
     }
 
-    public void setSortingAlgorithms(String sortingAlgorithms) {
-        this.sortingAlgorithms = sortingAlgorithms;
+    public void setSortingAlgorithm(String sortingAlgorithm) {
+        this.sortingAlgorithm = sortingAlgorithm;
     }
 
     public Integer getMaxIterations() {
@@ -25,11 +37,11 @@ public class SortingParameters {
         this.maxIterations = maxIterations;
     }
 
-    public String getDirections() {
-        return directions;
+    public String getDirection() {
+        return direction;
     }
 
-    public void setDirections(String directions) {
-        this.directions = directions;
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }

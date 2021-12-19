@@ -51,9 +51,9 @@ public class ChooseSorter {
             throw new EmptyInputException();
         if (sorter == null)
             throw new NoSorterProvided();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         sorter.sort(unsorted_list, max_it, ascending);
-        return System.currentTimeMillis() - start;
+        return System.nanoTime() - start;
     }
 
     /**

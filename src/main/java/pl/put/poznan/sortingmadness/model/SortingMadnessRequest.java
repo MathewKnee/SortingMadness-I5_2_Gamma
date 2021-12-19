@@ -1,18 +1,32 @@
 package pl.put.poznan.sortingmadness.model;
 
-import org.json.JSONArray;
+
 import org.json.JSONObject;
 
 import java.util.List;
 
+/**
+ * Request wrapper for SortingMadness application.
+ *
+ * @author Aleksandra Kiel
+ * @version 1.0
+ */
 public class SortingMadnessRequest {
-
-    private String keyToSort;
-
+    /**
+     * Keys to sort by if the list is an object list.
+     */
+    private List<String> keysToSort;
+    /**
+     * Sorting parameters. For details see {@link SortingParameters}
+     */
     private List<SortingParameters> sortingParameters;
-
+    /**
+     * List of JSONObjects to be sorted. In case of object sorting.
+     */
     private List<JSONObject> data;
-
+    /**
+     * List of Comparable objects to be sorted. In case of simple sorting.
+     */
     private List<Comparable> simpleData;
 
     public List<Comparable> getSimpleData() {
@@ -23,12 +37,12 @@ public class SortingMadnessRequest {
         this.simpleData = simpleData;
     }
 
-    public String getKeyToSort() {
-        return keyToSort;
+    public List<String> getKeysToSort() {
+        return keysToSort;
     }
 
-    public void setKeyToSort(String keyToSort) {
-        this.keyToSort = keyToSort;
+    public void setKeysToSort(List<String> keyToSort) {
+        this.keysToSort = keyToSort;
     }
 
     public List<SortingParameters> getSortingParameters() {
