@@ -83,6 +83,7 @@ public class QuickSorter implements Sorter{
     @Override
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
         if(unsorted_list.size() == 0) return;
+        max_it = max_it <= 0 ? unsorted_list.size() : max_it;
         int[] stack_indexes = new int[unsorted_list.size() + unsorted_list.size() % 2];
         int top = -1, iteration_nr = 1;
         stack_indexes[++top] = 0;
@@ -117,6 +118,7 @@ public class QuickSorter implements Sorter{
      */
     public void sort(List<JSONObject> unsorted_list, int max_it, boolean ascending, JSONComparator comparator) {
         if(unsorted_list.size() == 0) return;
+        max_it = max_it <= 0 ? unsorted_list.size() : max_it;
         int[] stack_indexes = new int[unsorted_list.size() + unsorted_list.size() % 2];
         int top = -1, iteration_nr = 1;
         stack_indexes[++top] = 0;
