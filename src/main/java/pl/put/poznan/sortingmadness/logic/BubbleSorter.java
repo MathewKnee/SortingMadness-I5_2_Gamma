@@ -26,8 +26,9 @@ public class BubbleSorter implements Sorter {
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
         int sizeOfList = unsorted_list.size();
         int direction_switch = ascending ? 1 : -1;
+        int it_max = max_it <= 0 ? sizeOfList: max_it;
         for (int i = 0; i < sizeOfList; i++) {
-            if (i < max_it) {
+            if (i < it_max) {
                 for (int j = 1; j < (sizeOfList - i); j++) {
                     if (unsorted_list.get(j - 1) instanceof String) {
                         if (direction_switch * ((String) unsorted_list.get(j - 1)).compareToIgnoreCase((String) unsorted_list.get(j)) > 0) {
