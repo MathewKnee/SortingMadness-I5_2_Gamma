@@ -56,9 +56,12 @@ public class JSONComparator implements Comparator<JSONObject> {
                 String o1_param_val = (String) o1_param;
                 String o2_param_val = (String) o2_param;
                 comp_value =  o1_param_val.compareToIgnoreCase(o2_param_val);
-            }
-            if(comp_value!=0) {
+            }else {
                 throw new InvalidKeysException("Key parameter is not in allowed type. Object type: "+ o1_param.getClass());
+            }
+            if(comp_value!=0){
+                ret_val = comp_value;
+                break;
             }
         }
 

@@ -100,7 +100,7 @@ public class SortingMadnessHelper {
      */
     private List<JSONObject> converter(JSONArray list) {
         List<JSONObject> jsonObjectList = new ArrayList<>();
-        for (int i = 0; i < list.length(); i++) {
+        for (int i = list.length() - 1; i >= 0; i--) {
             jsonObjectList.add(list.getJSONObject(i));
         }
         return jsonObjectList;
@@ -218,10 +218,12 @@ public class SortingMadnessHelper {
     public String getResponseObject(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException,
             InvalidSorterException, NoSortingAlgorithmProvidedException{
         SortingMadnessRequest sortingMadnessRequest = getData(request);
+        if (sortingMadnessRequest.getKeysToSort() == null) throw new InvalidKeysException("No key list provided");
         if (sortingMadnessRequest.getKeysToSort().isEmpty()) throw new InvalidKeysException("Key list is empty");
         List<SortingMadnessResponse> responseList = new ArrayList<>();
         ChooseSorter chooseSorter = new ChooseSorter();
         logger.info("Beginning sorting");
+        if(sortingMadnessRequest.getSortingParameters() == null) throw new NoSortingAlgorithmProvidedException("No sorting algorithm provided");
         if(sortingMadnessRequest.getSortingParameters().isEmpty()) throw new NoSortingAlgorithmProvidedException("No sorting algorithm provided");
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
             List<JSONObject> dataList = new ArrayList<>(sortingMadnessRequest.getData());
@@ -266,17 +268,16 @@ public class SortingMadnessHelper {
      * @throws ChooseSorter.NoSorterProvided see {@link ChooseSorter.NoSorterProvided}
      * @throws ChooseSorter.EmptyInputException see {@link ChooseSorter.EmptyInputException}
      * @throws InvalidSorterException see {@link InvalidSorterException}
-     * @throws InvalidKeysException see {@link InvalidKeysException}
      * @throws NoSortingAlgorithmProvidedException see {@link NoSortingAlgorithmProvidedException}
      */
     public String getResponseSimple(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException,
             InvalidSorterException, NoSortingAlgorithmProvidedException{
         logger.debug("Parsing request");
         SortingMadnessRequest sortingMadnessRequest = getDataSimple(request);
-        if (sortingMadnessRequest.getKeysToSort().isEmpty()) throw new InvalidKeysException("Key list is empty");
         List<SortingMadnessSimpleResponse> responseList = new ArrayList<>();
         ChooseSorter chooseSorter = new ChooseSorter();
         logger.info("Beginning sorting");
+        if(sortingMadnessRequest.getSortingParameters() == null) throw new NoSortingAlgorithmProvidedException("No sorting algorithm provided");
         if(sortingMadnessRequest.getSortingParameters().isEmpty()) throw new NoSortingAlgorithmProvidedException("No sorting algorithm provided");
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
             List<Comparable> dataList = new ArrayList<>(sortingMadnessRequest.getSimpleData());
