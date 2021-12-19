@@ -205,6 +205,8 @@ public class SortingMadnessHelper {
      * Main processing function for Object sorting
      * @param request REST request to be processed.
      * @return parsed response.
+     * @throws ChooseSorter.NoSorterProvided see {@link ChooseSorter.NoSorterProvided}
+     * @throws ChooseSorter.EmptyInputException see {@link ChooseSorter.EmptyInputException}
      */
     public String getResponseObject(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException{
 
@@ -252,6 +254,8 @@ public class SortingMadnessHelper {
      * Main processing function for Simple sorting
      * @param request REST request to be processed.
      * @return parsed response.
+     * @throws ChooseSorter.NoSorterProvided see {@link ChooseSorter.NoSorterProvided}
+     * @throws ChooseSorter.EmptyInputException see {@link ChooseSorter.EmptyInputException}
      */
     public String getResponseSimple(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException {
         logger.debug("Parsing request");
