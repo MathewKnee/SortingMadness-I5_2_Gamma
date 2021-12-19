@@ -24,8 +24,9 @@ public class InsertionSorter implements Sorter {
     public <E extends Comparable<E>> void sort(List<E> unsorted_list, int max_it, boolean ascending) {
         int sizeOfList = unsorted_list.size();
         int direction_switch = ascending ? 1 : -1;
+        int it_max = max_it <= 0 ? sizeOfList: max_it;
         for (int i = 1; i < sizeOfList; i++) {
-            if (i < max_it) {
+            if (i < it_max) {
                 E key = unsorted_list.get(i);
                 int j = i - 1;
                 if (key instanceof String) {
