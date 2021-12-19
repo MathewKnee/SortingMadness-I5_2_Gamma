@@ -42,40 +42,41 @@ public class SortingMadnessHelper {
      * Chooses sorter based on input string value.
      * @param chooseSorter ChooseSorter object for which the sorting algorithm will be set.
      * @param sortingAlg name of the algorithm.
+     * @throws InvalidSorterException thrown when chosen sorting algorithm does not exist.
      */
-    private void fillSorter(ChooseSorter chooseSorter, String sortingAlg) throws ChooseSorter.NoSorterProvided{
+    private void fillSorter(ChooseSorter chooseSorter, String sortingAlg) throws InvalidSorterException{
         if (sortingAlg.equals("bubblesort")) {
             logger.debug("Chosen algorithm: bubble sort");
             BubbleSorter bubbleSorter = new BubbleSorter();
             chooseSorter.setSorter(bubbleSorter);
         }
-        if (sortingAlg.equals("cocktailsort")) {
+        else if (sortingAlg.equals("cocktailsort")) {
             logger.debug("Chosen algorithm: cocktail sort");
             CocktailSorter cocktailSorter = new CocktailSorter();
             chooseSorter.setSorter(cocktailSorter);
         }
-        if (sortingAlg.equals("heapsort")) {
+        else if (sortingAlg.equals("heapsort")) {
             logger.debug("Chosen algorithm: heap sort");
             HeapSorter heapSorter = new HeapSorter();
             chooseSorter.setSorter(heapSorter);
         }
-        if (sortingAlg.equals("insertionsort")) {
+        else if (sortingAlg.equals("insertionsort")) {
             logger.debug("Chosen algorithm: insertion sort");
             InsertionSorter insertionSorter = new InsertionSorter();
             chooseSorter.setSorter(insertionSorter);
         }
-        if (sortingAlg.equals("mergesort")) {
+        else if (sortingAlg.equals("mergesort")) {
             logger.debug("Chosen algorithm: merge sort");
             MergeSorter mergeSorter = new MergeSorter();
             chooseSorter.setSorter(mergeSorter);
         }
-        if (sortingAlg.equals("quicksort")) {
+        else if (sortingAlg.equals("quicksort")) {
             logger.debug("Chosen algorithm: quick sort");
             QuickSorter quickSorter = new QuickSorter();
             chooseSorter.setSorter(quickSorter);
         }else{
             logger.debug("No matching algorithm");
-            throw new ChooseSorter.NoSorterProvided("There is no sorting algorithm with name: "+sortingAlg);
+            throw new InvalidSorterException("There is no sorting algorithm with name: "+sortingAlg);
         }
 
     }
@@ -210,13 +211,18 @@ public class SortingMadnessHelper {
      * @return parsed response.
      * @throws ChooseSorter.NoSorterProvided see {@link ChooseSorter.NoSorterProvided}
      * @throws ChooseSorter.EmptyInputException see {@link ChooseSorter.EmptyInputException}
+     * @throws InvalidKeysException see {@link InvalidKeysException}
+     * @throws InvalidSorterException see {@link InvalidSorterException}
+     * @throws NoSortingAlgorithmProvidedException see {@link NoSortingAlgorithmProvidedException}
      */
-    public String getResponseObject(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException{
-
+    public String getResponseObject(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException,
+            InvalidSorterException, NoSortingAlgorithmProvidedException{
         SortingMadnessRequest sortingMadnessRequest = getData(request);
+        if (sortingMadnessRequest.getKeysToSort().isEmpty()) throw new InvalidKeysException("Key list is empty");
         List<SortingMadnessResponse> responseList = new ArrayList<>();
         ChooseSorter chooseSorter = new ChooseSorter();
         logger.info("Beginning sorting");
+        if(sortingMadnessRequest.getSortingParameters().isEmpty()) throw new NoSortingAlgorithmProvidedException("No sorting algorithm provided");
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
             List<JSONObject> dataList = new ArrayList<>(sortingMadnessRequest.getData());
             logParameters(param);
@@ -238,7 +244,7 @@ public class SortingMadnessHelper {
      * @param responseList response list to be parsed.
      * @return parsed response list.
      */
-    private String getSimpleResponseToString(List<SortingMadnessSimpleResponse> responseList) {
+    private String getSimpleResponseToString(List<SortingMadnessSimpleResponse> responseList){
         logger.info("Parsing response");
         JSONObject jsonObjectResult = new JSONObject();
         List<JSONObject> tempList = new ArrayList<>();
@@ -259,13 +265,19 @@ public class SortingMadnessHelper {
      * @return parsed response.
      * @throws ChooseSorter.NoSorterProvided see {@link ChooseSorter.NoSorterProvided}
      * @throws ChooseSorter.EmptyInputException see {@link ChooseSorter.EmptyInputException}
+     * @throws InvalidSorterException see {@link InvalidSorterException}
+     * @throws InvalidKeysException see {@link InvalidKeysException}
+     * @throws NoSortingAlgorithmProvidedException see {@link NoSortingAlgorithmProvidedException}
      */
-    public String getResponseSimple(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException {
+    public String getResponseSimple(String request) throws ChooseSorter.NoSorterProvided, ChooseSorter.EmptyInputException,
+            InvalidSorterException, NoSortingAlgorithmProvidedException{
         logger.debug("Parsing request");
         SortingMadnessRequest sortingMadnessRequest = getDataSimple(request);
+        if (sortingMadnessRequest.getKeysToSort().isEmpty()) throw new InvalidKeysException("Key list is empty");
         List<SortingMadnessSimpleResponse> responseList = new ArrayList<>();
         ChooseSorter chooseSorter = new ChooseSorter();
         logger.info("Beginning sorting");
+        if(sortingMadnessRequest.getSortingParameters().isEmpty()) throw new NoSortingAlgorithmProvidedException("No sorting algorithm provided");
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
             List<Comparable> dataList = new ArrayList<>(sortingMadnessRequest.getSimpleData());
             logParameters(param);

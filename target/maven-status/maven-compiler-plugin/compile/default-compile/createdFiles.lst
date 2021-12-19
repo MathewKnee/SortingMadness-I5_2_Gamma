@@ -1,8 +1,11 @@
+pl\put\poznan\sortingmadness\logic\NoSortingAlgorithmProvidedException.class
 pl\put\poznan\sortingmadness\logic\Sorter.class
+pl\put\poznan\sortingmadness\logic\InvalidKeysException.class
 pl\put\poznan\sortingmadness\logic\MergeSorter.class
 pl\put\poznan\sortingmadness\logic\InsertionSorter.class
 pl\put\poznan\sortingmadness\logic\QuickSorter.class
 pl\put\poznan\sortingmadness\logic\CocktailSorter.class
 pl\put\poznan\sortingmadness\app\SortingMadnessApplication.class
+pl\put\poznan\sortingmadness\logic\InvalidSorterException.class
 pl\put\poznan\sortingmadness\logic\BubbleSorter.class
 pl\put\poznan\sortingmadness\logic\HeapSorter.class

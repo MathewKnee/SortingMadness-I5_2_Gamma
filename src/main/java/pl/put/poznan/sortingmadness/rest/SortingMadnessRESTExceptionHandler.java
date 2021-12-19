@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import pl.put.poznan.sortingmadness.logic.ChooseSorter;
-import pl.put.poznan.sortingmadness.logic.SortingMadnessHelper;
+import pl.put.poznan.sortingmadness.logic.*;
 import pl.put.poznan.sortingmadness.model.SortingMadnessErrorResponse;
 
 import java.util.ArrayList;
@@ -83,6 +82,49 @@ public class SortingMadnessRESTExceptionHandler extends ResponseEntityExceptionH
         List<String> details = new ArrayList<>();
         details.add(ex.getMessage());
         SortingMadnessErrorResponse error = new SortingMadnessErrorResponse("No sorter chosen error", details);
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    /**
+     * Handler for {@link InvalidKeysException}.
+     * @param ex thrown exception.
+     * @param request request that caused it.
+     * @return REST response that describes the error.
+     */
+    @ExceptionHandler(InvalidKeysException.class)
+    public final ResponseEntity<Object> handleInvalidKeysException(InvalidKeysException ex, WebRequest request){
+        logger.debug("InvalidKeysException was caught. Caused by request "+request.toString());
+        List<String> details = new ArrayList<>();
+        details.add(ex.getMessage());
+        SortingMadnessErrorResponse error = new SortingMadnessErrorResponse("Invalid keys to sort objects error", details);
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    /**
+     * Handler for {@link InvalidSorterException}.
+     * @param ex thrown exception.
+     * @param request request that caused it.
+     * @return REST response that describes the error.
+     */
+    @ExceptionHandler(InvalidSorterException.class)
+    public final ResponseEntity<Object> handleInvalidSorterException(InvalidSorterException ex, WebRequest request){
+        logger.debug("InvalidSorterException was caught. Caused by request "+request.toString());
+        List<String> details = new ArrayList<>();
+        details.add(ex.getMessage());
+        SortingMadnessErrorResponse error = new SortingMadnessErrorResponse("Invalid sorter error", details);
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * Handler for {@link NoSortingAlgorithmProvidedException}.
+     * @param ex thrown exception.
+     * @param request request that caused it.
+     * @return REST response that describes the error.
+     */
+    @ExceptionHandler(NoSortingAlgorithmProvidedException.class)
+    public final ResponseEntity<Object> handleNoSortingAlgorithmProvidedException(NoSortingAlgorithmProvidedException ex, WebRequest request){
+        logger.debug("NoSortingAlgorithmProvidedException was caught. Caused by request "+request.toString());
+        List<String> details = new ArrayList<>();
+        details.add(ex.getMessage());
+        SortingMadnessErrorResponse error = new SortingMadnessErrorResponse("No sorting algorithm provided error", details);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

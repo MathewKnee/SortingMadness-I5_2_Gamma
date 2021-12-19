@@ -23,8 +23,8 @@ public class ChooseSorter {
      * Exception thrown when sorting is executed without setting sorter.
      */
     public static class NoSorterProvided extends Exception{
-        public NoSorterProvided(String msg){
-            super(msg);
+        public NoSorterProvided(){
+            super("Did not provide sorter.");
         }
     }
 
@@ -50,7 +50,7 @@ public class ChooseSorter {
         if (unsorted_list.size() == 0)
             throw new EmptyInputException();
         if (sorter == null)
-            throw new NoSorterProvided("Did not provide sorter.");
+            throw new NoSorterProvided();
         long start = System.nanoTime();
         sorter.sort(unsorted_list, max_it, ascending);
         return System.nanoTime() - start;
@@ -70,7 +70,7 @@ public class ChooseSorter {
         if (unsorted_list.size() == 0)
             throw new EmptyInputException();
         if (sorter == null)
-            throw new NoSorterProvided("Did not provide sorter.");
+            throw new NoSorterProvided();
         long start = System.nanoTime();
         sorter.sort(unsorted_list, max_it, ascending, comparator);
         return System.nanoTime() - start;

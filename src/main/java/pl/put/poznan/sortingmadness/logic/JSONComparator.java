@@ -22,11 +22,12 @@ public class JSONComparator implements Comparator<JSONObject> {
     /**
      * Compares two given JSONObjects.
      * Compares two properties either when they are either Integer, Long, Double or String.
-     * If property type is different it assumes objects are equal on that given key.
+     * If property type is different it throws a runtime exception {@link InvalidKeysException}.
      *
      * @param o1 object to compare
      * @param o2 object to compare
      * @return value lower than zero if o1 lesser than o2, zero if o1 equals o2 and value greater than zero if o1 greater than o2
+     * @throws InvalidKeysException thrown when property has invalid type.
      */
     @Override
     public int compare(JSONObject o1, JSONObject o2) {
@@ -57,8 +58,7 @@ public class JSONComparator implements Comparator<JSONObject> {
                 comp_value =  o1_param_val.compareToIgnoreCase(o2_param_val);
             }
             if(comp_value!=0) {
-                ret_val = comp_value;
-                break;
+                throw new InvalidKeysException("Key parameter is not in allowed type. Object type: "+ o1_param.getClass());
             }
         }
 
