@@ -2,6 +2,9 @@ package pl.put.poznan.sortingmadness.logic;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -9,11 +12,11 @@ import pl.put.poznan.sortingmadness.model.SortingMadnessRequest;
 import pl.put.poznan.sortingmadness.model.SortingMadnessResponse;
 import pl.put.poznan.sortingmadness.model.SortingMadnessSimpleResponse;
 import pl.put.poznan.sortingmadness.model.SortingParameters;
+import pl.put.poznan.sortingmadness.test.InsertionSorterTest;
+import pl.put.poznan.sortingmadness.test.QuickSorterTest;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Logic class that parses JSON input, delegates sorting and then composes JSON output.
@@ -346,6 +349,41 @@ public class SortingMadnessHelper {
             responseList.add(sortingMadnessSimpleResponse);
         }
         return getSimpleResponseToString(responseList);
+    }
+
+    /**
+     * Function to test the application
+     * @return parsed response.
+     */
+    public String getTestResults(){
+        Map<String, Result> results = new HashMap<String, Result>();
+        results.put("insertion_sorter", JUnitCore.runClasses(InsertionSorterTest.class));
+        results.put("quick_sorter", JUnitCore.runClasses(QuickSorterTest.class));
+        JSONObject jsonObjectResult = new JSONObject();
+        int total = 0, failed = 0;
+        for (Map.Entry<String, Result> result: results.entrySet()){
+            List<JSONObject> tempList = new ArrayList<>();
+            JSONObject jsonObjectSubResult = new JSONObject();
+            for (Failure failure: result.getValue().getFailures()){
+                JSONObject temp = new JSONObject();
+                temp.put("failed_test", failure.toString());
+                tempList.add(temp);
+            }
+            total += result.getValue().getRunCount();
+            failed += result.getValue().getFailureCount();
+            jsonObjectSubResult.put("total", result.getValue().getRunCount());
+            jsonObjectSubResult.put("passed", result.getValue().getRunCount() - result.getValue().getFailureCount());
+            jsonObjectSubResult.put("failed", result.getValue().getFailureCount());
+            if (result.getValue().getFailureCount() > 0)
+                jsonObjectSubResult.put("failed_tests", tempList);
+            jsonObjectResult.put(result.getKey(), jsonObjectSubResult);
+        }
+        JSONObject jsonObjectSubResult = new JSONObject();
+        jsonObjectSubResult.put("total", total);
+        jsonObjectSubResult.put("passed", total - failed);
+        jsonObjectSubResult.put("failed", failed);
+        jsonObjectResult.put("summary", jsonObjectSubResult);
+        return jsonObjectResult.toString();
     }
 }
 
