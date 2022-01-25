@@ -1,0 +1,2 @@
+Akcje naprawcze:
+ - brak, wszystko działało bez zarzutów
