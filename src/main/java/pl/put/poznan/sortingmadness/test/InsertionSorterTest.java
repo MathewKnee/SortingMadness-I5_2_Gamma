@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 
 public class InsertionSorterTest {
     private List<JSONObject> converter(JSONArray list) throws JSONException {
@@ -69,9 +71,10 @@ public class InsertionSorterTest {
     public void testSortAscending(){
         InsertionSorter mockInsertionSorter = Mockito.mock(InsertionSorter.class);
         List<Comparable> mockList = Mockito.mock(ArrayList.class);
-        mockList.add(1);
-        mockList.add(2);
-        mockList.add(3);
+        when(mockList.size()).thenReturn(3);
+        when(mockList.get(0)).thenReturn(1);
+        when(mockList.get(1)).thenReturn(2);
+        when(mockList.get(2)).thenReturn(3);
         mockInsertionSorter.sort(mockList,100,true);
         Mockito.verify(mockInsertionSorter, Mockito.times(1)).sort(ArgumentMatchers.anyListOf(Comparable.class), ArgumentMatchers.isA(Integer.class), ArgumentMatchers.isA(Boolean.class));
     }
@@ -79,9 +82,10 @@ public class InsertionSorterTest {
     public void testSortDescending(){
         InsertionSorter mockInsertionSorter = Mockito.mock(InsertionSorter.class);
         List<Comparable> mockList = Mockito.mock(ArrayList.class);
-        mockList.add(1);
-        mockList.add(2);
-        mockList.add(3);
+        when(mockList.size()).thenReturn(3);
+        when(mockList.get(0)).thenReturn(1);
+        when(mockList.get(1)).thenReturn(2);
+        when(mockList.get(2)).thenReturn(3);
         mockInsertionSorter.sort(mockList,100,false);
         Mockito.verify(mockInsertionSorter, Mockito.times(1)).sort(ArgumentMatchers.anyListOf(Comparable.class), ArgumentMatchers.isA(Integer.class), ArgumentMatchers.isA(Boolean.class));
     }
