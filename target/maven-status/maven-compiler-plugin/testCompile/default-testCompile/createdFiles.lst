@@ -1,6 +1,6 @@
-pl\put\poznan\sortingmadness\BubbleSorterTest.class
 pl\put\poznan\sortingmadness\QuickSorterTest.class
-pl\put\poznan\sortingmadness\HeapSorterTest.class
 pl\put\poznan\sortingmadness\InsertionSorterTest.class
 pl\put\poznan\sortingmadness\MergeSorterTest.class
 pl\put\poznan\sortingmadness\CocktailSorterTest.class
+pl\put\poznan\sortingmadness\BubbleSorterTest.class
+pl\put\poznan\sortingmadness\HeapSorterTest.class

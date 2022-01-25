@@ -3,7 +3,7 @@ package pl.put.poznan.sortingmadness;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import pl.put.poznan.sortingmadness.logic.JSONComparator;

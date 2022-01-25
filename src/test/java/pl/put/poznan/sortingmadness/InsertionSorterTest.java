@@ -5,7 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.put.poznan.sortingmadness.logic.InsertionSorter;
 import pl.put.poznan.sortingmadness.logic.JSONComparator;
 
