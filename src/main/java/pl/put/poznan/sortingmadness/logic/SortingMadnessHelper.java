@@ -39,12 +39,15 @@ public class SortingMadnessHelper {
 
 
     /**
-     * Chooses sorter based on input string value.
+     * Chooses sorter for SimpleSorting based on input string value.
      * @param chooseSorter ChooseSorter object for which the sorting algorithm will be set.
      * @param sortingAlg name of the algorithm.
+     * @param data data to sort(used for automatic sorting).
+     * @param ascending direction of sort.
+     * @param <E> self Comparable object.
      * @throws InvalidSorterException thrown when chosen sorting algorithm does not exist.
      */
-    private void fillSorter(ChooseSorter chooseSorter, String sortingAlg) throws InvalidSorterException{
+    private <E extends Comparable<E>> void fillSorter(ChooseSorter chooseSorter, String sortingAlg, List<E> data, boolean ascending) throws InvalidSorterException{
         if (sortingAlg.equals("bubblesort")) {
             logger.debug("Chosen algorithm: bubble sort");
             BubbleSorter bubbleSorter = new BubbleSorter();
@@ -74,11 +77,62 @@ public class SortingMadnessHelper {
             logger.debug("Chosen algorithm: quick sort");
             QuickSorter quickSorter = new QuickSorter();
             chooseSorter.setSorter(quickSorter);
-        }else{
+        }else if (sortingAlg.equals("auto")){
+            logger.debug("Chosen algorithm: auto");
+            chooseSorter.setAuto(data,ascending);
+        }
+        else{
             logger.debug("No matching algorithm");
             throw new InvalidSorterException("There is no sorting algorithm with name: "+sortingAlg);
         }
-
+    }
+    /**
+     * Chooses sorter for ObjectSorting based on input string value.
+     * @param chooseSorter ChooseSorter object for which the sorting algorithm will be set.
+     * @param sortingAlg name of the algorithm.
+     * @param data data to sort(used for automatic sorting).
+     * @param ascending direction of sort.
+     * @param comparator comparator used to compare JSONObjects
+     * @throws InvalidSorterException thrown when chosen sorting algorithm does not exist.
+     */
+    private void fillSorter(ChooseSorter chooseSorter, String sortingAlg, List<JSONObject> data, boolean ascending, JSONComparator comparator) throws InvalidSorterException{
+        if (sortingAlg.equals("bubblesort")) {
+            logger.debug("Chosen algorithm: bubble sort");
+            BubbleSorter bubbleSorter = new BubbleSorter();
+            chooseSorter.setSorter(bubbleSorter);
+        }
+        else if (sortingAlg.equals("cocktailsort")) {
+            logger.debug("Chosen algorithm: cocktail sort");
+            CocktailSorter cocktailSorter = new CocktailSorter();
+            chooseSorter.setSorter(cocktailSorter);
+        }
+        else if (sortingAlg.equals("heapsort")) {
+            logger.debug("Chosen algorithm: heap sort");
+            HeapSorter heapSorter = new HeapSorter();
+            chooseSorter.setSorter(heapSorter);
+        }
+        else if (sortingAlg.equals("insertionsort")) {
+            logger.debug("Chosen algorithm: insertion sort");
+            InsertionSorter insertionSorter = new InsertionSorter();
+            chooseSorter.setSorter(insertionSorter);
+        }
+        else if (sortingAlg.equals("mergesort")) {
+            logger.debug("Chosen algorithm: merge sort");
+            MergeSorter mergeSorter = new MergeSorter();
+            chooseSorter.setSorter(mergeSorter);
+        }
+        else if (sortingAlg.equals("quicksort")) {
+            logger.debug("Chosen algorithm: quick sort");
+            QuickSorter quickSorter = new QuickSorter();
+            chooseSorter.setSorter(quickSorter);
+        }else if (sortingAlg.equals("auto")){
+            logger.debug("Chosen algorithm: auto");
+            chooseSorter.setAuto(data,comparator,ascending);
+        }
+        else{
+            logger.debug("No matching algorithm");
+            throw new InvalidSorterException("There is no sorting algorithm with name: "+sortingAlg);
+        }
     }
 
     /**
@@ -228,7 +282,7 @@ public class SortingMadnessHelper {
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
             List<JSONObject> dataList = new ArrayList<>(sortingMadnessRequest.getData());
             logParameters(param);
-            fillSorter(chooseSorter, param.getSortingAlgorithm());
+            fillSorter(chooseSorter, param.getSortingAlgorithm(),dataList, getBooleanValueOfDirection(param.getDirection()), new JSONComparator(sortingMadnessRequest.getKeysToSort()));
             logger.info("Starting computation");
             long timeOfSorting = chooseSorter.executeSort(dataList, param.getMaxIterations(), getBooleanValueOfDirection(param.getDirection()),
                     new JSONComparator(sortingMadnessRequest.getKeysToSort()));
@@ -282,7 +336,7 @@ public class SortingMadnessHelper {
         for (SortingParameters param : sortingMadnessRequest.getSortingParameters()) {
             List<Comparable> dataList = new ArrayList<>(sortingMadnessRequest.getSimpleData());
             logParameters(param);
-            fillSorter(chooseSorter, param.getSortingAlgorithm());
+            fillSorter(chooseSorter, param.getSortingAlgorithm(),dataList, getBooleanValueOfDirection(param.getDirection()));
             logger.info("Starting computation");
             long timeOfSorting = chooseSorter.executeSort(dataList, param.getMaxIterations(), getBooleanValueOfDirection(param.getDirection()));
             logger.info("Computation finished");
